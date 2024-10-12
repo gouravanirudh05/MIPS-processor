@@ -1,9 +1,3 @@
-"""
-PROJECT BY:
-        IMT2023005-Gourav Anirudh
-        IMT2023030-Sathish Adithiyaa S V
-        IMT2023104-Subhash H
-"""
 from colorama import Fore  # We are using this to show the output in each phase in a different colour
 
 """                       ************THE CODE FOR PROCESS STARTS HERE********************                           """
