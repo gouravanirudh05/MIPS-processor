@@ -1,75 +1,94 @@
-# MIPS-processor
-This is the python code which mimics the MIPS processor
- 
-EG 212 Computer Architecture- MIPS Processor Design
+# MIPS Processor Design
+## Project Overview
+This project demonstrates a MIPS processor design by simulating three distinct C programs:
 
-Project Description:
-We have chosen three C programs.
-1. Binary search
-This program has memory locations n(the size of the array) , arr(the sorted array) and x(the element to search) which are hardcoded into the memory. These values can be changed for different test cases. The memory location res has –1. The program searches for the element x(through binary search technique) in the array and stores the index of the first occurence of the element. If the element is not found the original value of –1 is retained.
-2. Selection sort
-This program has memory locations n(the size of the array) and arr(the array). These values  can be changed for different test cases. The program performs selection sort on the given array. 
-3. Two sum (For demonstration)
-This program has memory locations n(the size of the array) , arr(the sorted array) and x(the sum) which are hardcoded into the memory. These values can be changed for different test cases. The memory location res has 0. The program stores 1 in res if there are arr[i] and arr[j] in the array such that arr[i] + arr[j] = x else the original value of 0 is retained.
+1. Binary Search
+2. Selection Sort
+3. Two Sum 
+The MIPS processor is designed using the five stages of instruction execution:
 
+* **Fetch**: Fetches the instruction from instruction memory.
+* **Decode**: Decodes the instruction using the opcode and function fields.
+* **Execute (EX)**: Executes the instruction using the ALU.
+* **Memory Access (MEM)**: Accesses the data memory.
+* **Write Back (WB)**: Writes back to the register file or data memory.
+Each C program has a corresponding MIPS assembly implementation, which is run on a Python simulator (```Processor.py```), showcasing the contents of registers at each stage of execution. This project also utilizes the colorama package to highlight different phases of the cycle with distinct colors for better visibility.
+## Programs
+1. **Binary Search(Binary_Search.c)**
+* Memory Locations:
+  * ```n```:Size of the array
+  * ```arr```:Sorted array
+  * ```x```:Element to search for
+  *  ```res```:Initialized to ```-1```, stores the index of the first occurrence of ```x```, or retains ```-1``` if not found.
+*Operation: Performs a binary search for ```x``` in ```arr```. The result is stored in ```res```.
+2. Selection Sort (Selection_Sort.c)
+* Memory Locations:
+  * ```n```: Size of the array.
+  * ```arr```: Array to be sorted.
+* Operation: Performs selection sort on the array ```arr```.
+3. Two Sum (Two_Sum.c)
+* Memory Locations:
+  * ```n```: Size of the array.
+  * ```arr```: Array of integers.
+  * ```x```: Target sum.
+  * ```res```: Initialized to ```0```. If two distinct elements in the array sum to ```x```, res is set to ```1```.
+* Operation: Checks if there are two elements in the array whose sum equals ``x``.
+## Assembly Programs
+For each C program, there is a corresponding MIPS assembly implementation:
+* bin_search.asm
+* sel_sort.asm
+* two_sum.asm
+The assembly code is converted into binary using the MARS (MIPS Assembler and Runtime Simulator) tool.
 
+## Setting Up the Project
+### Prerequisites
+1. Python: Ensure Python 3 is installed on your system.
 
+2. MARS: Download and install the MARS 4.5 simulator from MARS website.
 
-Files Submitted:
-C programs:
-1. Binary_Search.c
-2. Selection_Sort.c
-3. Two_Sum.c
+3. colorama: Install the ``colorama`` Python package to display colored output in the terminal.
+```bash 
+pip install colorama
+```
 
-Assembly programs:
-1. bin_search.asm
-2. Sel_sort.asm
-3. Two_sum.asm
+## MARS Setup
+1. Open the MIPS assembly code (```bin_search.asm```, ```sel_sort.asm```, ```two_sum.asm```) in MARS.
+2. Assemble the code by clicking the "Assemble" button.
+3. For each program, generate a binary dump:
+* Select the ```.text``` memory segment and binary text format in the dump dialog box.
+* Save the output to a file (e.g., ```bin_search_text.txt```, ```sel_sort_text.txt```, ```two_sum_text.txt```).
+* Similarly, dump the data segment to a file (e.g., ```bin_search_data.txt```, ```sel_sort_data.txt```, ```two_sum_data.txt```).
+4. Save the instruction and data memory files in the same directory as the ```Processor.py``` file.
+## Running the Processor Simulation
+Once you have set up the binary dumps of the assembly programs, you can run the MIPS processor simulation using the provided ```Processor.py``` file.
+```bash
+# Clone or download the project repository
+git clone <repository_link>
 
-Processor :
-1.Processor.py
-Steps to run the code:
-1. Open the mips assembly code in MARS 4.5
-2. Click on   icon to assemble the program
-3. Then click   icon -> select .text in memory segment drop down box and binary text in the dump format drop down box and save. This saves the instructions in binary to a text file.
-4. Repeat the same for data to save data in binary to a text file.
-5. Save all the files in the same directory as processor imports ouput of the MARS assembler.
-6. On the terminal enter ‘Python3 pip install colorama ‘ if not  installed  		
-7. Run the command python3 processor.py
-8. Output of the processor file is shown  with each  instruction’s associated register contents printed and in what stage it is present in.
-The C code for Two sum:
- 
-The Assembly code for Two sum:
- 
+# Navigate to the project directory
+cd mips-processor-simulation
 
-The Mars outputs for Two sum:
-Instruction Memory:
- 
+# Run the processor simulation
+python3 Processor.py
+```
+## Processor Output
+The processor simulates the five stages of the MIPS pipeline for each instruction and provides a detailed breakdown of register contents during the execution. The colorama package is used to highlight different parts of the pipeline:
 
-Data Memory :
- 
-Processor Output:
-We have implemented the five stages of the processor namely:
-•	fetch()-In this stage the instruction is fetched from the instruction memory
-•	decode()- In this stage   the instruction is decoded based on opcode and function field 
-•	EX()-In this stage execution of  the instruction is done using the alu
-•	MEM()-In this stage the data memory is accessed
-•	WB()-In this stage the register file or the data memory is written back to.
-We have used the package colorama to indicate different phased of the the cycle with distinct colors. The table below explains the use of these colours
+* Red: Register values and Program Counter (PC).
+* Yellow: Beginning or completion of a pipeline phase.
+* Blue: Descriptions of what is happening at each instruction.
+* Cyan: Control signals.
 
-COLOR	USE
-RED	Register values and PC
-YELLOW	Beginning or completion of a phase
-BLUE	Description of what is happening in each instruction
-CYAN	Control signals
-
-Output of processor is in  the following  link below:-
-Processor_output.pdf
-PROJECT BY
-
-GOURAV ANIRUDH BJ	IMT2023005
-SATHISH ADITHIYAA SV	IMT2023030
-SUBHASH H	IMT2023104
-
-
-
+## Project Files
+* C Programs:
+  * Binary_Search.c
+  * Selection_Sort.c
+  * Two_Sum.c
+* MIPS Assembly Programs:
+  * bin_search.asm
+  * sel_sort.asm
+  * two_sum.asm
+* Processor:
+  * Processor.py: The Python script simulating the MIPS pipeline.
+## Output Example
+For detailed output, including the register states and control signals at each stage of execution, please refer to the attached processor output file: [Processor_output.pdf](Processor_output.pdf).
