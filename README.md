@@ -92,3 +92,7 @@ The processor simulates the five stages of the MIPS pipeline for each instructio
   * Processor.py: The Python script simulating the MIPS pipeline.
 ## Output Example
 For detailed output, including the register states and control signals at each stage of execution, please refer to the attached processor output file: [Processor_output.pdf](Processor_output.pdf).
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
