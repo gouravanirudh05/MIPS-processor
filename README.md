@@ -63,7 +63,7 @@ pip install colorama
 Once you have set up the binary dumps of the assembly programs, you can run the MIPS processor simulation using the provided ```Processor.py``` file.
 ```bash
 # Clone or download the project repository
-git clone <repository_link>
+git clone https://github.com/gouravanirudh05/MIPS-processor.git
 
 # Navigate to the project directory
 cd mips-processor-simulation
